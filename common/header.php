@@ -27,6 +27,7 @@
         'bootstrap',
         'font-awesome',
         'style',
+        'ol',
     ));
     echo head_css();
     ?>
