@@ -43,6 +43,9 @@
     ));
     echo head_js();
     ?>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 
 <?php
@@ -50,39 +53,48 @@
     require_once getcwd().'/plugins/Scripto/libraries/Scripto.php';
     $scripto = ScriptoPlugin::getScripto();
 ?>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<?php echo WEB_ROOT; ?>"><img src="<?php echo img('pul_logo.png'); ?>" alt="Princeton University Library: Transcribing the West" title="Princeton University Library: Transcribing the West" border="0"></a>
+        </div>
 
-    <div id="wrap" class="container">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="<?php echo WEB_ROOT; ?>/items/browse">Browse Items</a></li>
+                <li><a href="<?php echo WEB_ROOT; ?>/collections/browse">Browse Collections</a></li>
+                <?php if ($scripto->isLoggedIn()): ?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $scripto->getUserName(); ?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="<?php echo WEB_ROOT; ?>/scripto">Your Contributions</a></li>
+                      <li><a href="<?php echo WEB_ROOT; ?>/scripto/watchlist">Your Watchlist</a></li>
+                      <li><a href="<?php echo WEB_ROOT; ?>/scripto/recent-changes">Recent Changes</a></li>
+                      <li><a href="<?php echo WEB_ROOT; ?>/scripto/logout">Logout</a></li>
+                    </ul>
+                </li>
+                <?php else: ?>
 
-        <header id="header" role="banner">
+                <li>
+                <a href="<?php echo WEB_ROOT; ?>/scripto/login"><strong>Sign in or register</strong></a>
+                </li>
 
-            <div id="sublinks" class="masthead clearfix">
+                <?php endif; ?>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
-                <ul class="nav nav-pills pull-right">
+    <div id="wrap" class="container-fluid">
 
-                    <?php if ($scripto->isLoggedIn()): ?>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong><?php echo $scripto->getUserName(); ?></strong><b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?php echo WEB_ROOT; ?>/scripto">Your Contributions</a></li>
-                            <li><a href="<?php echo WEB_ROOT; ?>/scripto/watchlist">Your Watchlist</a></li>
-                            <li><a href="<?php echo WEB_ROOT; ?>/scripto/recent-changes">Recent Changes</a></li>
-                            <li><a href="<?php echo WEB_ROOT; ?>/scripto/logout">Logout</a></li>
-                        </ul>
-                    </li>
-
-                    <?php else: ?>
-
-                    <li>
-                    <a href="<?php echo WEB_ROOT; ?>/scripto/login"><strong>Sign in or register</strong></a>
-                    </li>
-
-                    <?php endif; ?>
-                </ul>
-
-                <a href="<?php echo WEB_ROOT; ?>"><img src="<?php echo img('sub.png'); ?>" alt="Scribe: an Omeka theme" title="Scribe: an Omeka theme" width="960" height="80" border="0"></a>
-            </div>
-
-        </header><!-- end header -->
-
-        <article id="content">
+        <article>
 
             <?php fire_plugin_hook('public_content_top', array('view'=>$this)); ?>

@@ -8,8 +8,8 @@ $collection = get_collection_for_item();
 ?>
 <div id="primary">
     <ul class="breadcrumb">
-      <li><?php echo link_to_home_page(); ?><span class="divider">/</span></li>
-      <li><?php echo link_to_collection_for_item($collection->name, array('id' => 'item-collection-link',)); ?><span class="divider">/</span></li>
+      <li><?php echo link_to_home_page(); ?></li>
+      <li><?php echo link_to_collection_for_item($collection->name, array('id' => 'item-collection-link',)); ?></li>
       <li class="active"><?php echo metadata('item', array('Dublin Core', 'Title')); ?></li>
     </ul>
 

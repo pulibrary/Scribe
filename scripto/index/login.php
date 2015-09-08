@@ -41,7 +41,7 @@ echo head($head);
                 </div>
             </div>
             <?php echo $this->formHidden('scripto_redirect_url', $this->redirectUrl); ?>
-            <?php echo $this->formSubmit('scripto_mediawiki_login', __('Login'), array('style' => 'display:inline; float:none;')); ?>
+            <?php echo $this->formSubmit('scripto_mediawiki_login', __('Login'), array('class' => 'btn btn-primary', 'style' => 'display:inline; float:none;')); ?>
         </form>
     </div><!-- #scripto-login -->
 </div>
