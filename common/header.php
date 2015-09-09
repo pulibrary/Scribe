@@ -69,8 +69,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+		<!--
                 <li><a href="<?php echo WEB_ROOT; ?>/items/browse">Browse Items</a></li>
-                <li><a href="<?php echo WEB_ROOT; ?>/collections/browse">Browse Collections</a></li>
+                -->
+		<li><a href="<?php echo WEB_ROOT; ?>/collections/browse">Browse Collections</a></li>
                 <?php if ($scripto->isLoggedIn()): ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $scripto->getUserName(); ?> <span class="caret"></span></a>
@@ -84,7 +86,7 @@
                 <?php else: ?>
 
                 <li>
-                <a href="<?php echo WEB_ROOT; ?>/scripto/login"><strong>Sign in or register</strong></a>
+                <a href="<?php echo WEB_ROOT; ?>/scripto/login"><strong>Sign in</strong></a>
                 </li>
 
                 <?php endif; ?>
