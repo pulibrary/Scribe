@@ -688,3 +688,7 @@ canvas {
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
     background-color: #333 !important;
 }
+
+.container {
+  padding-top: 20px;
+}

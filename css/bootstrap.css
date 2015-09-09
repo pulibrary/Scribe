@@ -2533,7 +2533,7 @@ table .span24 {
 }
 
 .collapse {
-  position: relative;
+  position: static;
   height: 0;
   overflow: hidden;
   -webkit-transition: height 0.35s ease;
