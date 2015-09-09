@@ -684,3 +684,7 @@ canvas {
   left:400px;
   z-index:4;
 }
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+    background-color: #333 !important;
+}
