@@ -302,7 +302,6 @@ h2 { color: #6A231F; }
 
 #col-images {
     width: 250px;
-    height: 125px;
 }
 
 .thumbnail.right-caption {
@@ -663,4 +662,8 @@ canvas {
 
 .row {
   background-color: #F2F2F2;
+}
+
+.modal {
+  z-index: 15000 !important;
 }

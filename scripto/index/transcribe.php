@@ -36,82 +36,6 @@ jQuery(document).ready(function() {
         );
     });
 
-    // Handle edit talk page.
-    jQuery('#scripto-talk-page-edit').click(function() {
-        jQuery('#scripto-talk-page-edit').
-            prop('disabled', true).
-            text('<?php echo __('Editing discussion...'); ?>');
-        jQuery.post(
-            <?php echo js_escape(url('scripto/index/page-action')); ?>,
-            {
-                page_action: 'edit',
-                page: 'talk',
-                item_id: <?php echo js_escape($this->doc->getId()); ?>,
-                file_id: <?php echo js_escape($this->doc->getPageId()); ?>,
-                wikitext: jQuery('#scripto-talk-page-wikitext').val()
-            },
-            function(data) {
-                jQuery('#scripto-talk-page-edit').
-                    prop('disabled', false).
-                    text('<?php echo __('Edit discussion'); ?>');
-                jQuery('#scripto-talk-page-html').html(data);
-            }
-        );
-    });
-
-    // Handle default transcription/talk visibility.
-    if (window.location.hash == '#discussion') {
-        jQuery('#scripto-transcription').hide();
-        jQuery('#scripto-page-show').text('<?php echo __('show transcription'); ?>');
-    } else {
-        window.location.hash = '#transcription'
-        jQuery('#scripto-talk').hide();
-        jQuery('#scripto-page-show').text('<?php echo __('show discussion'); ?>');
-    }
-
-    // Handle transcription/talk visibility.
-    jQuery('#scripto-page-show').click(function(event) {
-        event.preventDefault();
-        if ('#transcription' == window.location.hash) {
-            window.location.hash = '#discussion';
-            jQuery('#scripto-transcription').hide();
-            jQuery('#scripto-talk').show();
-            jQuery('#scripto-page-show').text('<?php echo __('show transcription'); ?>');
-        } else {
-            window.location.hash = '#transcription';
-            jQuery('#scripto-talk').hide();
-            jQuery('#scripto-transcription').show();
-            jQuery('#scripto-page-show').text('<?php echo __('show discussion'); ?>');
-        }
-    });
-
-    // Toggle show transcription edit.
-    jQuery('#scripto-transcription-edit-show').click(function(event) {
-        event.preventDefault();
-        var clicks = jQuery(this).data('clicks');
-        if (!clicks) {
-            jQuery(this).text('<?php echo __('hide edit'); ?>');
-            jQuery('#scripto-transcription-edit').slideDown('fast');
-        } else {
-            jQuery(this).text('<?php echo __('edit'); ?>');
-            jQuery('#scripto-transcription-edit').slideUp('fast');
-        }
-        jQuery(this).data("clicks", !clicks);
-    });
-
-    // Toggle show talk edit.
-    jQuery('#scripto-talk-edit-show').click(function(event) {
-        event.preventDefault();
-        var clicks = jQuery(this).data('clicks');
-        if (!clicks) {
-            jQuery(this).text('<?php echo __('hide edit'); ?>');
-            jQuery('#scripto-talk-edit').slideDown('fast');
-        } else {
-            jQuery(this).text('<?php echo __('edit'); ?>');
-            jQuery('#scripto-talk-edit').slideUp('fast');
-        }
-        jQuery(this).data("clicks", !clicks);
-    });
 
     <?php if ($this->scripto->isLoggedIn()): ?>
 
@@ -224,100 +148,9 @@ jQuery(document).ready(function() {
         }
     });
 
-    // Handle default un/protect talk page.
-    <?php if ($this->doc->isProtectedTalkPage()): ?>
-    jQuery('#scripto-talk-page-protect').
-        data('protect', true).
-        text('<?php echo __('Unprotect page'); ?>').
-        css('float', 'none');
-    <?php else: ?>
-    jQuery('#scripto-talk-page-protect').
-        data('protect', false).
-        text('<?php echo __('Protect page'); ?>').
-        css('float', 'none');
-    <?php endif; ?>
-
-    // Handle un/protect talk page.
-    jQuery('#scripto-talk-page-protect').click(function() {
-        if (!jQuery(this).data('protect')) {
-            jQuery(this).
-                prop('disabled', true).
-                text('<?php echo __('Protecting page...'); ?>');
-            jQuery.post(
-                <?php echo js_escape(url('scripto/index/page-action')); ?>,
-                {
-                    page_action: 'protect',
-                    page: 'talk',
-                    item_id: <?php echo js_escape($this->doc->getId()); ?>,
-                    file_id: <?php echo js_escape($this->doc->getPageId()); ?>
-                },
-                function(data) {
-                    jQuery('#scripto-talk-page-protect').
-                        data('protect', true).
-                        prop('disabled', false).
-                        text('<?php echo __('Unprotect page'); ?>');
-                }
-            );
-        } else {
-            jQuery(this).prop('disabled', true).text('<?php echo __('Unprotecting page...'); ?>');
-            jQuery.post(
-                <?php echo js_escape(url('scripto/index/page-action')); ?>,
-                {
-                    page_action: 'unprotect',
-                    page: 'talk',
-                    item_id: <?php echo js_escape($this->doc->getId()); ?>,
-                    file_id: <?php echo js_escape($this->doc->getPageId()); ?>
-                },
-                function(data) {
-                    jQuery('#scripto-talk-page-protect').
-                        data('protect', false).
-                        prop('disabled', false).
-                        text('<?php echo __('Protect page'); ?>');
-                }
-            );
-        }
-    });
 
     <?php endif; // end canProtect() ?>
-    <?php if ($this->scripto->canExport()): ?>
 
-    jQuery('#scripto-transcription-page-import').click(function() {
-        jQuery(this).prop('disabled', true).text('<?php echo __('Importing page...'); ?>');
-        jQuery.post(
-            <?php echo js_escape(url('scripto/index/page-action')); ?>,
-            {
-                page_action: 'import-page',
-                page: 'transcription',
-                item_id: <?php echo js_escape($this->doc->getId()); ?>,
-                file_id: <?php echo js_escape($this->doc->getPageId()); ?>
-            },
-            function(data) {
-                jQuery('#scripto-transcription-page-import').
-                    prop('disabled', false).
-                    text('<?php echo __('Import page'); ?>');
-            }
-        );
-    });
-
-    jQuery('#scripto-transcription-document-import').click(function() {
-        jQuery(this).prop('disabled', true).text('<?php echo __('Importing document...'); ?>');
-        jQuery.post(
-            <?php echo js_escape(url('scripto/index/page-action')); ?>,
-            {
-                page_action: 'import-document',
-                page: 'transcription',
-                item_id: <?php echo js_escape($this->doc->getId()); ?>,
-                file_id: <?php echo js_escape($this->doc->getPageId()); ?>
-            },
-            function(data) {
-                jQuery('#scripto-transcription-document-import').
-                    prop('disabled', false).
-                    text('<?php echo __('Import document'); ?>');
-            }
-        );
-    });
-
-    <?php endif; // end canExport() ?>
 });
 </script>
 
@@ -343,40 +176,14 @@ jQuery(document).ready(function() {
         <li><a href="<?php echo url('collections'); ?>"><?php echo $collection_link ?></a></li>
 
         <li><a href="<?php echo url(array('controller' => 'items', 'action' => 'show', 'id' => $this->doc->getId()), 'id'); ?>"><?php echo $this->doc->getTitle(); ?></a></li>
-      <!-- cut-it-out
-        <li><?php echo metadata($file, array('Dublin Core', 'Title')); ?></li>
-      -->
+
     </ul>
     <div id="scripto-transcribe" class="scripto">
-        <!-- navigation
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#"><?php echo __('Differences'); ?></a></li>
-        <?php if ($this->scripto->isLoggedIn()): ?>
-            <li><span><?php echo __('Logged in as %s', '<a href="' . html_escape(url('scripto')) . '">' . $this->scripto->getUserName() . '</a>'); ?></span></li>
-            <li><span>(<a href="<?php echo html_escape(url('scripto/index/logout')); ?>"><?php echo __('logout'); ?></a>)</span></li>
-            <li><a href="<?php echo html_escape(url('scripto/watchlist')); ?>"><?php echo __('Your watchlist'); ?></a> </li>
-        <?php else: ?>
-            <li><a href="<?php echo html_escape(url('scripto/index/login')); ?>"><?php echo __('Log in to Scripto'); ?></a></li>
-        <?php endif; ?>
-            <li><a href="<?php echo html_escape(url('scripto/recent-changes')); ?>"><?php echo __('Recent changes'); ?></a></li>
-            <li><a href="<?php echo html_escape(url(array('controller' => 'items', 'action' => 'show', 'id' => $this->doc->getId()), 'id')); ?>"><?php echo __('View item'); ?></a></li>
-            <li><a href="<?php echo html_escape(url(array('controller' => 'files', 'action' => 'show', 'id' => $this->doc->getPageId()), 'id')); ?>"><?php echo __('View file'); ?></a></li>
-        </ul>
-        -->
+
         <h2><span class="fa fa-book fa-lg"></span> <?php if ($this->doc->getTitle()): ?><?php echo $this->doc->getTitle(); ?><?php else: ?><?php echo __('Untitled Document'); ?><?php endif; ?></h2>
-        <!-- cut-it-out
-          <?php if ($this->scripto->canExport()): ?><div><?php echo $this->formButton('scripto-transcription-document-import', __('Import document'), array('style' => 'display:inline; float:none;')); ?></div><?php endif; ?>-->
+
         <h3 style="margin:15px"><span class="fa fa-file-text fa-lg"></span> <?php echo $this->doc->getPageName(); ?><br/><small style="margin-left:2.5em">image <?php echo html_escape($this->paginationUrls['current_page_number']); ?> of <?php echo html_escape($this->paginationUrls['number_of_pages']); ?></small></h3>
-<!--
-        <div>
-            <div><strong><?php echo metadata($this->file, array('Dublin Core', 'Title')); ?></strong></div>
-            <div>image <?php echo html_escape($this->paginationUrls['current_page_number']); ?> of <?php echo html_escape($this->paginationUrls['number_of_pages']); ?></div>
-            <div>
-                <?php //echo metadata($this->$file, array('Dublin Core', 'Source')); ?>
-                <?php //echo metadata($item, array('Dublin Core', 'Relation')); ?>
-            </div>
-        </div>
--->
+
         <!-- transcription -->
         <div id="scripto-transcription">
         <?php if ($this->doc->canEditTranscriptionPage()): ?>
@@ -394,7 +201,9 @@ jQuery(document).ready(function() {
                 </div><!--alert alert-info-->
                 <div><?php echo $this->formTextarea('scripto-transcription-page-wikitext', $this->doc->getTranscriptionPageWikitext(), array('cols' => '76', 'rows' => '16')); ?></div>
                 <?php endif; ?>
-                <p class="help-block"><a href="http://www.mediawiki.org/wiki/Help:Formatting" target="_blank"><?php echo __('wiki formatting help'); ?></a></p>
+                <p class="help-block">
+                  <a data-toggle="modal" data-target="#tipsModal" href="#">Transcription Guidelines</a>
+                  <!--<a href="http://www.mediawiki.org/wiki/Help:Formatting" target="_blank"><?php echo __('wiki formatting help'); ?></a>--></p>
                 <div>
                     <?php echo $this->formButton('scripto-transcription-page-edit', __('Save transcription'), array('class' => 'btn btn-primary btn-lg', 'style' => 'margin-top:10px; display:inline; float:none;')); ?>
                 </div>
@@ -407,28 +216,6 @@ jQuery(document).ready(function() {
 
         </div><!-- #scripto-transcription -->
 
-        <!-- discussion -->
-        <div id="scripto-talk">
-            <?php if ($this->doc->canEditTalkPage()): ?>
-            <div id="scripto-talk-edit" style="display: none;">
-                <div><?php echo $this->formTextarea('scripto-talk-page-wikitext', $this->doc->getTalkPageWikitext(), array('cols' => '76', 'rows' => '16')); ?></div>
-                <div>
-                    <?php echo $this->formButton('scripto-talk-page-edit', __('Edit discussion'), array('style' => 'display:inline; float:none;')); ?>
-                </div>
-                <p><a href="http://www.mediawiki.org/wiki/Help:Formatting" target="_blank"><?php echo __('wiki formatting help'); ?></a></p>
-            </div><!-- #scripto-talk-edit -->
-            <?php else: ?>
-            <p><?php echo __('You don\'t have permission to discuss this page.'); ?></p>
-            <?php endif; ?>
-            <h2><?php echo __('Current Page Discussion'); ?>
-            <?php if ($this->doc->canEditTalkPage()): ?> [<a href="#" id="scripto-talk-edit-show"><?php echo __('edit'); ?></a>]<?php endif; ?>
-            <?php if ($this->scripto->canProtect()): ?> [<a href="<?php echo html_escape($this->doc->getTalkPageMediawikiUrl()); ?>"><?php echo __('wiki'); ?></a>]<?php endif; ?>
-            [<a href="<?php echo html_escape(url(array('item-id' => $this->doc->getId(), 'file-id' => $this->doc->getPageId(), 'namespace-index' => 1), 'scripto_history')); ?>"><?php echo __('history'); ?></a>]</h2>
-            <div>
-                <?php if ($this->scripto->canProtect()): ?><?php echo $this->formButton('scripto-talk-page-protect'); ?> <?php endif; ?>
-            </div>
-            <div id="scripto-talk-page-html"><?php echo $this->talkPageHtml; ?></div>
-        </div><!-- #scripto-talk -->
 
         <!-- pagination -->
         <ul class="pagination">
@@ -451,4 +238,37 @@ jQuery(document).ready(function() {
   </div>
  </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="tipsModal" tabindex="-1" role="dialog" aria-labelledby="tipsModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="tipsModalLabel">Transcription Guidelines</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>Don’t worry about formatting.
+            </li>
+          <li> Transcribe words as they are spelled or abbreviated.
+            Resist the temptation to correct what you see in the document.</li>
+          <li> Do not transcribe text that has been crossed out. </li>
+          <li>Do not transcribe hyphens or spaces in words that occur at line breaks. </li>
+          <li>Indicate if you can’t decipher a word. If you are unsure of a word or phrase, please use [illegible], or your best guess followed by a question mark within brackets [Chattanooga?], or even [town?] or [name?].<br>
+            If you see the term [illegible] in a transcription, please try to decipher and transcribe the word.</li>
+          <li>Transcribe simple forms. Please try to transcribe all elements of the document, including typewritten text that may appear in a table, form, etc. Don’t worry about formatting the transcription. If a page is entirely typewritten, do not transcribe it.</li>
+          <li>Consider the context. If you’re having trouble with a word or passage, read “around” it and think about what a likely word would be, or look for other letters and spellings in the document that are similar.</li>
+          <li>Consult the Iowa Digital Library record. When you are viewing a particular document in DIYHistory you will see a link above the page image that says “view in Iowa Digital Library.” This takes you another view of the digitized document as well as to useful information such as names of people, places, subjects, and events, and links to full finding aids. </li>
+          <li>Be aware of contemporary spelling and abbreviations. Common eighteenth and nineteenth-century abbreviations and their full spellings include: inst. = a date in this month (e.g. the 15th inst.); ult. = a date in the previous month (5th ult.); &amp;c = et cetera; Common “misspellings” and writing conventions: ware = were; thare = there; verry = very; evry = every; evning = evening; perhapse = perhaps; attacted = attacked; fiew = few; greaddeal or great eal or gread eal = great deal; fs = ss (e.g. mifses = misses); do = ditto.
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php echo foot(); ?>
