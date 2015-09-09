@@ -93,7 +93,7 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-    <div id="wrap" class="container-fluid">
+    <div id="wrap" class="container">
 
         <article>
 

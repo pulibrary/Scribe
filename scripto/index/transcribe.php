@@ -166,78 +166,73 @@ jQuery(document).ready(function() {
 <?php if (!is_admin_theme()): ?>
 
 <?php endif; ?>
-<div id="primary">
-<?php echo flash(); ?>
-  <div class="row">
-   <div class="col-md-4 left-col">
-    <ul class="breadcrumb">
-        <li><a href="<?php echo WEB_ROOT; ?>"><span class="glyphicon glyphicon-home"/> Home</a></li>
+<div id="transcription-col" class="left-col">
+  <ul class="breadcrumb">
+      <li><a href="<?php echo WEB_ROOT; ?>"><span class="glyphicon glyphicon-home"/> Home</a></li>
 
-        <li><a href="<?php echo url('collections'); ?>"><?php echo $collection_link ?></a></li>
+      <li><a href="<?php echo url('collections'); ?>"><?php echo $collection_link ?></a></li>
 
-        <li><a href="<?php echo url(array('controller' => 'items', 'action' => 'show', 'id' => $this->doc->getId()), 'id'); ?>"><?php echo $this->doc->getTitle(); ?></a></li>
+      <li><a href="<?php echo url(array('controller' => 'items', 'action' => 'show', 'id' => $this->doc->getId()), 'id'); ?>"><?php echo $this->doc->getTitle(); ?></a></li>
 
-    </ul>
-    <div id="scripto-transcribe" class="scripto">
+  </ul>
+  <div id="scripto-transcribe" class="scripto">
 
-        <h2><span class="fa fa-book fa-lg"></span> <?php if ($this->doc->getTitle()): ?><?php echo $this->doc->getTitle(); ?><?php else: ?><?php echo __('Untitled Document'); ?><?php endif; ?></h2>
+      <h2><span class="fa fa-book fa-lg"></span> <?php if ($this->doc->getTitle()): ?><?php echo $this->doc->getTitle(); ?><?php else: ?><?php echo __('Untitled Document'); ?><?php endif; ?></h2>
 
-        <h3 style="margin:15px"><span class="fa fa-file-text fa-lg"></span> <?php echo $this->doc->getPageName(); ?><br/><small style="margin-left:2.5em">image <?php echo html_escape($this->paginationUrls['current_page_number']); ?> of <?php echo html_escape($this->paginationUrls['number_of_pages']); ?></small></h3>
+      <h3 style="margin:15px"><span class="fa fa-file-text fa-lg"></span> <?php echo $this->doc->getPageName(); ?><br/><small style="margin-left:2.5em">image <?php echo html_escape($this->paginationUrls['current_page_number']); ?> of <?php echo html_escape($this->paginationUrls['number_of_pages']); ?></small></h3>
 
-        <!-- transcription -->
-        <div id="scripto-transcription">
-        <?php if ($this->doc->canEditTranscriptionPage()): ?>
-            <div id="scripto-transcription-edit">
-            <?php if ($this->doc->isProtectedTranscriptionPage()): ?>
-                <div class="alert alert-error">
-                    <strong>This transcription is complete!</strong>
-                </div><!--alert alert-error-->
-                <div id="scripto-transcription-page-html">
-                    <?php echo $this->transcriptionPageHtml; ?>
-                </div>
-                <?php else: ?>
-                <div class="alert alert-info">
-                    <strong>This item is editable!</strong>
-                </div><!--alert alert-info-->
-                <div><?php echo $this->formTextarea('scripto-transcription-page-wikitext', $this->doc->getTranscriptionPageWikitext(), array('cols' => '76', 'rows' => '16')); ?></div>
-                <?php endif; ?>
-                <p class="help-block">
-                  <a data-toggle="modal" data-target="#tipsModal" href="#">Transcription Guidelines</a>
-                  <!--<a href="http://www.mediawiki.org/wiki/Help:Formatting" target="_blank"><?php echo __('wiki formatting help'); ?></a>--></p>
-                <div>
-                    <?php echo $this->formButton('scripto-transcription-page-edit', __('Save transcription'), array('class' => 'btn btn-primary btn-lg', 'style' => 'margin-top:10px; display:inline; float:none;')); ?>
-                </div>
+      <!-- transcription -->
+      <div id="scripto-transcription">
+      <?php if ($this->doc->canEditTranscriptionPage()): ?>
+          <div id="scripto-transcription-edit">
+          <?php if ($this->doc->isProtectedTranscriptionPage()): ?>
+              <div class="alert alert-error">
+                  <strong>This transcription is complete!</strong>
+              </div><!--alert alert-error-->
+              <div id="scripto-transcription-page-html">
+                  <?php echo $this->transcriptionPageHtml; ?>
+              </div>
+              <?php else: ?>
+              <div class="alert alert-info">
+                  <strong>This item is editable!</strong>
+              </div><!--alert alert-info-->
+              <div><?php echo $this->formTextarea('scripto-transcription-page-wikitext', $this->doc->getTranscriptionPageWikitext(), array('cols' => '76', 'rows' => '16')); ?></div>
+              <?php endif; ?>
+              <p class="help-block">
+                <a data-toggle="modal" data-target="#tipsModal" href="#">Transcription Guidelines</a>
+                <!--<a href="http://www.mediawiki.org/wiki/Help:Formatting" target="_blank"><?php echo __('wiki formatting help'); ?></a>--></p>
+              <div>
+                  <?php echo $this->formButton('scripto-transcription-page-edit', __('Save transcription'), array('class' => 'btn btn-primary btn-lg', 'style' => 'margin-top:10px; display:inline; float:none;')); ?>
+              </div>
 
-            </div><!-- #scripto-transcription-edit -->
-        <?php else: ?>
-            <p><?php echo __('You don\'t have permission to transcribe this page.'); ?></p>
-        <?php endif; ?>
+          </div><!-- #scripto-transcription-edit -->
+      <?php else: ?>
+          <p><?php echo __('You don\'t have permission to transcribe this page.'); ?></p>
+      <?php endif; ?>
 
 
-        </div><!-- #scripto-transcription -->
+      </div><!-- #scripto-transcription -->
 
 
-        <!-- pagination -->
-        <ul class="pagination">
-        <li><?php if (isset($this->paginationUrls['previous'])): ?>
-          <a class="btn btn-xs" href="<?php echo html_escape($this->paginationUrls['previous']); ?>">&#171; <?php echo __('previous page'); ?></a>
-          <?php else: ?>&#171; <?php echo __('previous page'); ?><?php endif; ?>
-          </li>
-        <li><?php if (isset($this->paginationUrls['next'])): ?>
-          <a class="btn btn-xs" href="<?php echo html_escape($this->paginationUrls['next']); ?>"><?php echo __('next page'); ?> &#187;</a>
-          <?php else: ?><?php echo __('next page'); ?> &#187;<?php endif; ?>
-          </li>
-        </ul>
+      <!-- pagination -->
+      <ul class="pagination">
+      <li><?php if (isset($this->paginationUrls['previous'])): ?>
+        <a class="btn btn-xs" href="<?php echo html_escape($this->paginationUrls['previous']); ?>">&#171; <?php echo __('previous page'); ?></a>
+        <?php else: ?>&#171; <?php echo __('previous page'); ?><?php endif; ?>
+        </li>
+      <li><?php if (isset($this->paginationUrls['next'])): ?>
+        <a class="btn btn-xs" href="<?php echo html_escape($this->paginationUrls['next']); ?>"><?php echo __('next page'); ?> &#187;</a>
+        <?php else: ?><?php echo __('next page'); ?> &#187;<?php endif; ?>
+        </li>
+      </ul>
 
-    </div><!-- #scripto-transcribe -->
-
-  </div> <!-- end bootstrap row -->
-  <div class="col-md-8 zoom-col">
-        <!-- document viewer -->
-    <?php echo file_markup($this->file, array('imageSize' => 'fullsize')); ?>
-  </div>
- </div>
+  </div><!-- #scripto-transcribe -->
 </div>
+<div id="zoom">
+  <?php echo file_markup($this->file, array('imageSize' => 'fullsize')); ?>
+</div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="tipsModal" tabindex="-1" role="dialog" aria-labelledby="tipsModalLabel">

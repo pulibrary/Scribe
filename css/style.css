@@ -2,7 +2,7 @@
 /* General Styles */
 html, body {
   height:100%;
-  background-color: #F2F2F2;
+  background-color: #F2F2F2 !important;
 }
 
 p {
@@ -652,10 +652,6 @@ canvas {
     float: right;
 }
 
-.container{
-  padding:0px !important;
-}
-
 .navbar-brand {
       margin-top: -5px !important;
 }
@@ -666,4 +662,25 @@ canvas {
 
 .modal {
   z-index: 15000 !important;
+}
+
+#transcription-col {
+  background-color: #F2F2F2;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  width: 400px;
+  z-index: 4;
+  color: #333;
+  border-top: 1px lightgray solid;
+}
+
+#map {
+  background-color: #000;
+  position:absolute;
+  top:50px;
+  bottom:0;
+  right:0;
+  left:400px;
+  z-index:4;
 }
