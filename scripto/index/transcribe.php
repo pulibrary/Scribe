@@ -2,8 +2,9 @@
 $titleArray = array(__('Scripto'), __('Transcribe Page'));
 $head = array('title' => html_escape(implode(' | ', $titleArray)));
 echo head($head);
-if (get_option('scripto_image_viewer') == 'openlayers') {
-    echo js_tag('ol');
+if (get_option('scripto_image_viewer') == 'openseadragon') {
+    // echo js_tag('ol');
+    echo js_tag('openseadragon.min');
     // jQuery is enabled by default in Omeka and in most themes.
     // echo js_tag('jquery', 'javascripts/vendor');
 }
@@ -177,9 +178,9 @@ jQuery(document).ready(function() {
   </ul>
   <div id="scripto-transcribe" class="scripto">
 
-      <h2><span class="fa fa-book fa-lg"></span> <?php if ($this->doc->getTitle()): ?><?php echo $this->doc->getTitle(); ?><?php else: ?><?php echo __('Untitled Document'); ?><?php endif; ?></h2>
+      <h3><span class="fa fa-book fa-lg"></span> <?php if ($this->doc->getTitle()): ?><?php echo $this->doc->getTitle(); ?><?php else: ?><?php echo __('Untitled Document'); ?><?php endif; ?></h3>
 
-      <h3 style="margin:15px"><span class="fa fa-file-text fa-lg"></span> <?php echo $this->doc->getPageName(); ?><br/><small style="margin-left:2.5em">image <?php echo html_escape($this->paginationUrls['current_page_number']); ?> of <?php echo html_escape($this->paginationUrls['number_of_pages']); ?></small></h3>
+      <h4 style="margin:15px"><span class="fa fa-file-text fa-lg"></span> <?php echo $this->doc->getPageName(); ?><br/><small style="margin-left:2.5em">image <?php echo html_escape($this->paginationUrls['current_page_number']); ?> of <?php echo html_escape($this->paginationUrls['number_of_pages']); ?></small></h4>
 
       <!-- transcription -->
       <div id="scripto-transcription">
@@ -229,9 +230,7 @@ jQuery(document).ready(function() {
   </div><!-- #scripto-transcribe -->
 </div>
 <div id="zoom">
-  <?php echo file_markup($this->file, array('imageSize' => 'fullsize')); ?>
 </div>
-
 
 
 <!-- Modal -->
@@ -265,5 +264,14 @@ jQuery(document).ready(function() {
     </div>
   </div>
 </div>
+<div id="openseadragon1" style="width: 800px; height: 600px;"></div>
+<script type="text/javascript">
+    var viewer = OpenSeadragon({
+        id: "zoom",
+        prefixUrl: "<?php echo WEB_ROOT; ?>/themes/Princeton/images/osd/",
+        showNavigator:  false,
+        tileSources: [{"profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2", "scale_factors": [1, 2, 4, 8, 16], "tile_height": 256, "height": 7200, "width": 5250, "tile_width": 256, "qualities": ["native", "bitonal", "grey", "color"], "formats": ["jpg", "png", "gif"], "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json", "@id": "<?php echo str_replace("/full/full/0/native.jpg", "", $this->file['original_filename']); ?>"}]
+    });
+</script>
 
 <?php echo foot(); ?>
