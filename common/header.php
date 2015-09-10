@@ -39,7 +39,7 @@
     // queue_js_url('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js');
     queue_js_file(array(
         // 'bootstrap.min',
-        'jquery.bxSlider.min',
+        'jquery.bxSlider.min'
     ));
     echo head_js();
     ?>
