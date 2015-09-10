@@ -1,5 +1,5 @@
 <?php
-$head = array('title' => html_escape(__('Scripto')));
+$head = array('title' => html_escape(__('Transcriptions at Princeton University Library')));
 echo head($head);
 ?>
 <?php if (!is_admin_theme()): ?>
@@ -16,7 +16,7 @@ echo head($head);
             <li><span>(<a href="<?php echo html_escape(url('scripto/index/logout')); ?>"><?php echo __('logout'); ?></a>)</span></li>
             <li><a href="<?php echo html_escape(url('scripto/watchlist')); ?>"><?php echo __('Your watchlist'); ?></a> </li>
         <?php else: ?>
-            <li><a href="<?php echo html_escape(url('scripto/index/login')); ?>"><?php echo __('Log in to Scripto'); ?></a></li>
+            <li><a href="<?php echo html_escape(url('scripto/index/login')); ?>"><?php echo __('Log in to Transcribe'); ?></a></li>
         <?php endif; ?>
             <li><a href="<?php echo html_escape(url('scripto/recent-changes')); ?>"><?php echo __('Recent changes'); ?></a></li>
         </ul>
@@ -26,7 +26,7 @@ echo head($head);
         <?php if ($this->homePageText): ?>
         <?php echo $this->homePageText ?>
         <?php else: ?>
-        <h2><?php echo __('Welcome to Scripto using Scribe theme!'); ?></h2>
+        <h2><?php echo __('Transcribe Documents'); ?></h2>
         <p><?php echo __(
             'By using this plugin you are helping to transcribe items in %1$s. All items with '
           . 'files can be transcribed. For these purposes an item is a %2$sdocument%3$s, and '
