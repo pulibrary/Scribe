@@ -31,8 +31,8 @@ echo head($head);
             'By using this plugin you are helping to transcribe items in %1$s. All items with '
           . 'files can be transcribed. For these purposes an item is a %2$sdocument%3$s, and '
           . 'an item\'s files are its %4$spages%5$s. To begin transcribing documents, %6$sbrowse '
-          . 'items%7$s or %8$sview recent changes%9$s to Scripto. You may %10$slog in%11$s to '
-          . 'access your account and enable certain Scripto features. Login may not be required '
+          . 'items%7$s or %8$sview recent changes%9$s to Transcribe. You may %10$slog in%11$s to '
+          . 'access your account and enable certain Transcribe features. Login may not be required '
           . 'by the administrator.',
             '<i>' . get_option('site_title') . '</i>',
             '<em>', '</em>',

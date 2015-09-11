@@ -1,5 +1,5 @@
 <?php
-$titleArray = array(__('Scripto'), __('Transcribe Page'));
+$titleArray = array(__('Princeton'), __('Transcribe Page'));
 $head = array('title' => html_escape(implode(' | ', $titleArray)));
 echo head($head);
 if (get_option('scripto_image_viewer') == 'openseadragon') {

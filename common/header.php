@@ -72,7 +72,7 @@
 		<!--
                 <li><a href="<?php echo WEB_ROOT; ?>/items/browse">Browse Items</a></li>
                 -->
-		<li><a href="<?php echo WEB_ROOT; ?>/collections/browse">Browse Collections</a></li>
+		<li><a href="<?php echo WEB_ROOT; ?>/collections/browse">Browse Documents</a></li>
                 <?php if ($scripto->isLoggedIn()): ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $scripto->getUserName(); ?> <span class="caret"></span></a>

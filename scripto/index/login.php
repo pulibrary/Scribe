@@ -18,14 +18,14 @@ echo head($head);
     mediawiki doesn't offer account creation through their API. You must link directly to the page in your installation
     /my_mediawiki_install_directory/index.php5?title=Special:UserLogin&type=signup
 -->
-	<!--
-            <li><a href="#" target="_blank"><?php echo __('Create an account'); ?></a></li>
-        
+	    
+            <li><a href="http://diywiki.princeton.edu/index.php?title=Special:UserLogin&type=signup" target="_blank"><?php echo __('Create an account'); ?></a></li>
+       <!-- 
             <li><a href="<?php echo html_escape(url('scripto/recent-changes')); ?>"><?php echo __('Recent changes'); ?></a></li>
         -->
         </ul>
         <p><?php echo __(
-            'Log in using username and password assigned by your instructor to access your account '
+            'Enrolled students in HIS 374: History of the American West Log in using username and password you created to access your account. Your username should be your Princeton netid. Should you need to reset your password please vist the' . "<a href='http://diywiki.princeton.edu/index.php/Special:PasswordReset'>the transcription wiki</a>"
         ); ?></p>
 
         <!-- login -->
