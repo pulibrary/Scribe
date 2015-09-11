@@ -214,7 +214,9 @@ jQuery(document).ready(function() {
 
       </div><!-- #scripto-transcription -->
 
-
+      <?php
+        $md = json_decode($file["metadata"]);
+      ?>
       <!-- pagination -->
       <ul class="pagination">
       <li><?php if (isset($this->paginationUrls['previous'])): ?>
@@ -270,8 +272,9 @@ jQuery(document).ready(function() {
         id: "zoom",
         prefixUrl: "<?php echo WEB_ROOT; ?>/themes/Princeton/images/osd/",
         showNavigator:  false,
-        tileSources: [{"profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2", "scale_factors": [1, 2, 4, 8, 16], "tile_height": 256, "height": 7200, "width": 5250, "tile_width": 256, "qualities": ["native", "bitonal", "grey", "color"], "formats": ["jpg", "png", "gif"], "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json", "@id": "<?php echo str_replace("/full/full/0/native.jpg", "", $this->file['original_filename']); ?>"}]
+        tileSources: [{"profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2", "scale_factors": [1, 2, 4, 8, 16], "tile_height": 256, "height": <?php echo $md->video->resolution_y ?>, "width": <?php echo $md->video->resolution_x ?>, "tile_width": 256, "qualities": ["native", "bitonal", "grey", "color"], "formats": ["jpg", "png", "gif"], "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json", "@id": "<?php echo str_replace("/full/full/0/native.jpg", "", $this->file['original_filename']); ?>"}]
     });
+    // It would be nice to use <?php echo metadata($file, array('Dublin Core', 'Identifier')) ?> above instead of a string hack.  Also, it would be nice to hit the info.json for height and width data.
 </script>
 
 <?php echo foot(); ?>
