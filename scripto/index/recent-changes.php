@@ -1,5 +1,5 @@
 <?php
-$head = array('title' => html_escape(__('Scripto')));
+$head = array('title' => html_escape(__('Historic Transcriptions')));
 echo head($head);
 ?>
 <?php if (!is_admin_theme()): ?>
@@ -16,7 +16,7 @@ echo head($head);
             <li><span>(<a href="<?php echo html_escape(url('scripto/index/logout')); ?>"><?php echo __('logout'); ?></a>)</span></li>
             <li><a href="<?php echo html_escape(url('scripto/watchlist')); ?>"><?php echo __('Your watchlist'); ?></a> </li>
         <?php else: ?>
-            <li><a href="<?php echo html_escape(url('scripto/index/login')); ?>"><?php echo __('Log in to Scripto'); ?></a></li>
+            <li><a href="<?php echo html_escape(url('scripto/index/login')); ?>"><?php echo __('Log in to Transcribe'); ?></a></li>
         <?php endif; ?>
             <li class="active"><a href="<?php echo html_escape(url('scripto/recent-changes')); ?>"><?php echo __('Recent changes'); ?></a></li>
         </ul>

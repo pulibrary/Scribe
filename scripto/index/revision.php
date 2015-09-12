@@ -1,5 +1,5 @@
 <?php
-$titleArray = array(__('Scripto'), __('Page Revision'));
+$titleArray = array(__('Transcribe'), __('Page Revision'));
 $titleArray[] = (1 == $this->namespaceIndex) ? __('Discussion') : __('Transcription');
 $title = implode(' | ', $titleArray);
 $head = array('title' => html_escape($title));
