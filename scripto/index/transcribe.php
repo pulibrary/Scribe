@@ -209,7 +209,13 @@ jQuery(document).ready(function() {
           </div><!-- #scripto-transcription-edit -->
       <?php else: ?>
           <p><?php echo __('You don\'t have permission to transcribe this page.'); ?></p>
-      <?php endif; ?>
+	  <?php if($this->doc->getTranscriptionStatus() == 'Not Started'): ?>
+	  <h3>Transcription Not Started</h3>
+          <?php else: ?>
+          <h3>Current Transcription</h3>
+	  <p><?php echo $this->doc->getTranscriptionPageWikitext(); ?></p>
+     	  <?php endif; ?> 
+     <?php endif; ?>
 
 
       </div><!-- #scripto-transcription -->

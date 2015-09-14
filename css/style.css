@@ -473,11 +473,11 @@ td img {
     z-index: 10001;
 }
 
-.navbar-nav>li>a {
+.navbar-nav>li>a:hover {
     color: #999 !important;
 }
 
-.navbar-nav>li>a:hover {
+.navbar-nav>li>a {
     color: #FFF !important;
 }
 
