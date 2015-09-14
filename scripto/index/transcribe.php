@@ -160,6 +160,12 @@ jQuery(document).ready(function() {
     set_current_record('item',get_record_by_id('item', $page_id));
     $collection = get_collection_for_item();
     $collection_link = link_to_collection_for_item();
+    if(strpos($this->file['original_filename'],"/full/full/0/native.jpg")){
+      $iiif_id = str_replace("/full/full/0/native.jpg", "", $this->file['original_filename']);
+    }else{
+      $iiif_id = str_replace("/full/90,/0/native.jpg", "", $this->file['original_filename']);
+    }
+
 ?>
 
 <?php $base_Dir = basename(getcwd()); ?>
@@ -214,7 +220,7 @@ jQuery(document).ready(function() {
           <?php else: ?>
           <h3>Current Transcription</h3>
 	  <p><?php echo $this->doc->getTranscriptionPageWikitext(); ?></p>
-     	  <?php endif; ?> 
+     	  <?php endif; ?>
      <?php endif; ?>
 
 
@@ -274,12 +280,20 @@ jQuery(document).ready(function() {
 </div>
 <div id="openseadragon1" style="width: 800px; height: 600px;"></div>
 <script type="text/javascript">
-    var viewer = OpenSeadragon({
-        id: "zoom",
-        prefixUrl: "<?php echo WEB_ROOT; ?>/themes/Princeton/images/osd/",
-        showNavigator:  false,
-        tileSources: [{"profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2", "scale_factors": [1, 2, 4, 8, 16], "tile_height": 256, "height": <?php echo $md->video->resolution_y ?>, "width": <?php echo $md->video->resolution_x ?>, "tile_width": 256, "qualities": ["native", "bitonal", "grey", "color"], "formats": ["jpg", "png", "gif"], "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json", "@id": "<?php echo str_replace("/full/full/0/native.jpg", "", $this->file['original_filename']); ?>"}]
+    jQuery(document).ready(function() {
+      jQuery.get( "<?php echo $iiif_id; ?>/info.json", function( data ) {
+        var viewer = OpenSeadragon({
+            id: "zoom",
+            prefixUrl: "<?php echo WEB_ROOT; ?>/themes/Princeton/images/osd/",
+            showNavigator:  false,
+            tileSources: [{"profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2", "scale_factors": data.scale_factors, "tile_height": data.tile_height, "height": data.height, "width": data.height, "tile_width": data.tile_width, "qualities": ["native", "bitonal", "grey", "color"], "formats": ["jpg", "png", "gif"], "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json", "@id": "<?php echo $iiif_id; ?>"}]
+        });
+      });
+
     });
+
+
+    // <?php echo $iiif_id; ?>
     // It would be nice to use <?php echo metadata($file, array('Dublin Core', 'Identifier')) ?> above instead of a string hack.  Also, it would be nice to hit the info.json for height and width data.
 </script>
 
