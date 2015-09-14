@@ -23,6 +23,7 @@ echo head($head);
        <!-- 
             <li><a href="<?php echo html_escape(url('scripto/recent-changes')); ?>"><?php echo __('Recent changes'); ?></a></li>
         -->
+           <li><a href="http://diywiki.princeton.edu/index.php/Special:PasswordReset" target="_blank"><?php echo __('Reset Your Password'); ?></a></li>
         </ul>
         <p><?php echo __(
             'Enrolled students in HIS 374: History of the American West Log in using username and password you created to access your account. Your username should be your Princeton netid. Should you need to reset your password please vist the' . "<a href='http://diywiki.princeton.edu/index.php/Special:PasswordReset'>the transcription wiki</a>"
