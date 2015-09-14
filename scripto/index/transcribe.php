@@ -256,21 +256,28 @@ jQuery(document).ready(function() {
         <h4 class="modal-title" id="tipsModalLabel">Transcription Guidelines</h4>
       </div>
       <div class="modal-body">
-        <ul>
-          <li>Don’t worry about formatting.
-            </li>
-          <li> Transcribe words as they are spelled or abbreviated.
-            Resist the temptation to correct what you see in the document.</li>
-          <li> Do not transcribe text that has been crossed out. </li>
-          <li>Do not transcribe hyphens or spaces in words that occur at line breaks. </li>
-          <li>Indicate if you can’t decipher a word. If you are unsure of a word or phrase, please use [illegible], or your best guess followed by a question mark within brackets [Chattanooga?], or even [town?] or [name?].<br>
-            If you see the term [illegible] in a transcription, please try to decipher and transcribe the word.</li>
-          <li>Transcribe simple forms. Please try to transcribe all elements of the document, including typewritten text that may appear in a table, form, etc. Don’t worry about formatting the transcription. If a page is entirely typewritten, do not transcribe it.</li>
-          <li>Consider the context. If you’re having trouble with a word or passage, read “around” it and think about what a likely word would be, or look for other letters and spellings in the document that are similar.</li>
-          <li>Consult the Iowa Digital Library record. When you are viewing a particular document in DIYHistory you will see a link above the page image that says “view in Iowa Digital Library.” This takes you another view of the digitized document as well as to useful information such as names of people, places, subjects, and events, and links to full finding aids. </li>
-          <li>Be aware of contemporary spelling and abbreviations. Common eighteenth and nineteenth-century abbreviations and their full spellings include: inst. = a date in this month (e.g. the 15th inst.); ult. = a date in the previous month (5th ult.); &amp;c = et cetera; Common “misspellings” and writing conventions: ware = were; thare = there; verry = very; evry = every; evning = evening; perhapse = perhaps; attacted = attacked; fiew = few; greaddeal or great eal or gread eal = great deal; fs = ss (e.g. mifses = misses); do = ditto.
-          </li>
+                <ul><li>
+        <strong>TRANSCRIBE WHAT YOU SEE</strong>: As much as possible, transcribe the text as it appears on the page, including original spellings, abbreviations, symbols, etc.
+        </li>
+        <li>
+        <strong>FOLLOW LINE BREAKS</strong>: Later, when the transcription is indexed to the image, this will allow keyword searches to go to the specific line of text.
+        </li>
+        <li>
+          <strong>USE BRACKETS</strong>: Brackets are used for the following:
+          <ul>
+            <li>COMMENTS AND NOTES: Use [Note: text] when adding descriptive notes or illustrations and non-narrative text. Ex. [Note: drawing of a campsite] or [Note: accounting table] or [Note: blank page] or [Note: scribbling].</li>
+            <li>CROSSED-OUT WORDS: Use [--text--] for text that has been crossed-out. Ex. [--John Smith--].</li>
+            <li>ILLEGIBLE WORDS: Use [Illegible] for words you cannot decipher.</li>
+            <li>BEST GUESS: Use [?text?] if you are unsure of the transcription. Ex. [?John Smith?].</li>
+            <li>VERTICAL TEXT: Use [/text/] for text that is written vertically on the page.  Ex. [/John Smith went on/].</li>
+            <li>OTHER: Use brackets for any other instance where you are adding an explanation or comment to the transcription that is not a part of the original text.</li>
+          </ul>
+        <li>
+        <strong>CONSIDER THE CONTEXT</strong>: When transcribing a difficult word or passage, consider the subject of the manuscript as well as the preceding words and passages for hints at the likely transcription. Compare other words and letters to help decipher difficult handwriting. Be aware of contemporary abbreviations and spellings. A few common nineteenth-century abbreviations and spellings include (provided by DIYHistory Iowa):
+        <blockquote>inst. = a date in this month (e.g. the 15th inst.); ult. = a date in the previous month (5th ult.); &amp;c = et cetera;  ware = were; thare = there; verry = very; evry = every; evning = evening; perhapse = perhaps; attacted = attacked; fiew = few; greaddeal or great eal or gread eal = great deal; fs = ss (e.g. mifses = misses); do = ditto. Capt. = Captain; Lieut. or Lt. = Lieutenant; Maj. = Major; Col. = Colonel; Regt. = Regiment; Brig. = Brigade.</blockquote>
+        </li>
         </ul>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -286,7 +293,7 @@ jQuery(document).ready(function() {
             id: "zoom",
             prefixUrl: "<?php echo WEB_ROOT; ?>/themes/Princeton/images/osd/",
             showNavigator:  false,
-            tileSources: [{"profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2", "scale_factors": data.scale_factors, "tile_height": data.tile_height, "height": data.height, "width": data.height, "tile_width": data.tile_width, "qualities": ["native", "bitonal", "grey", "color"], "formats": ["jpg", "png", "gif"], "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json", "@id": "<?php echo $iiif_id; ?>"}]
+            tileSources: [{"profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2", "scale_factors": data.scale_factors, "tile_height": data.tile_height, "height": data.height, "width": data.width, "tile_width": data.tile_width, "qualities": data.qualities, "formats": data.formats, "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json", "@id": "<?php echo $iiif_id; ?>"}]
         });
       });
 
