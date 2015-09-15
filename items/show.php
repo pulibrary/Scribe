@@ -25,7 +25,6 @@ $collection = get_collection_for_item();
             $scripto = ScriptoPlugin::getScripto();
             // $helper = new Omeka_View_Helper_Media;
             $files =  return_files_for_item(array()); ?>
-
             <ul class="thumbnails">
             <?php foreach ($files as $file) :
                 $status = $scripto->getPageTranscriptionStatus($file->id);
@@ -52,6 +51,7 @@ $collection = get_collection_for_item();
                  } elseif (strlen($fileTitle) <= 36 ) {
                      $fileTitle .= '<br /><br />';
                  }
+                 $weight = metadata($file, array('Scripto', 'Weight'));
              ?>
                 <li class="span2">
                     <div class="thumbnail">
@@ -60,6 +60,7 @@ $collection = get_collection_for_item();
                         </a>
                         <h4><?php echo $fileTitle; ?></h4>
                         <span class="label <?php echo $label; ?>"><?php echo $status; ?></span>
+                        <span class="label <?php echo $label; ?>"><?php echo $weight; ?></span>
                      </div>
                  </li>
             <?php endforeach; ?>

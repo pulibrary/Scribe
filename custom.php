@@ -36,7 +36,7 @@ function return_files($files, array $props = array(), $wrapperAttributes = array
 {
     // require_once APP_DIR . '/helpers/Media.php';
     // $helper = new Omeka_View_Helper_Media;
-    return $files;
+    return sort_files($files);
 }
 
 // This function supplements FileFunctions.php in application/helpers
@@ -47,4 +47,19 @@ function return_files_for_item($options = array(), $wrapperAttributes = array('c
     }
 
     return return_files($item->Files, $options, $wrapperAttributes);
+}
+
+function sort_files($files) {
+
+    foreach($files as $file) {
+        $weight = metadata($file, array('Scripto', 'Weight'));
+        $file->order = $weight;
+    }
+    usort($files, 'sort_by_order');
+    return $files;
+}
+
+function sort_by_order($a, $b) {
+    if($a->order == $b->order){ return 0 ; }
+    return ($a->order < $b->order) ? -1 : 1;
 }
