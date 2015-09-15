@@ -672,3 +672,10 @@ canvas {
   left:400px;
   z-index:4;
 }
+
+.svg .pu-logo {
+    background-image: url(/themes/Princeton/images/pu.svg);
+    width: 142px;
+    height: 40px;
+    margin: 0.5em 0 0;
+}
