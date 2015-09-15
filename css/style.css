@@ -195,6 +195,13 @@ h2 { color: #6A231F; }
     transition: all 0.2s ease-in-out;
 }
 
+.thumbnails > li {
+    float: left;
+    margin-bottom: 18px;
+    margin-left: 20px;
+    min-height: 240px;
+}
+
 /* Footer */
 
 .footer {
