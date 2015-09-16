@@ -63,7 +63,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://library.princeton.edu/"><img src="<?php echo img('pul_logo.png'); ?>" alt="Princeton University Library: Transcribing the West" title="Princeton University Library: Transcribing the West" border="0"></a>
+            <a class="navbar-brand" href="<?php echo WEB_ROOT; ?>/collections/show/1"><img src="<?php echo img('pul_logo.png'); ?>" alt="Princeton University Library: Transcribing the West" title="Princeton University Library: Transcribing the West" border="0"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

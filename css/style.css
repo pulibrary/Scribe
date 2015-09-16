@@ -494,6 +494,10 @@ td img {
   margin:0px !important;
 }
 
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    background-color: #494f57;
+}
+
 a {color: #6A231F;}
 a:hover { color: #6A231F; text-decoration: underline; }
 
@@ -525,6 +529,12 @@ iframe { width: 100%; height: 30%; }
 .row2 h3 { font-size: 1.2em; padding-left: 20px; }
 .row2 ul { padding-left: 25px; }
 .row2 li { font-size: 1.2em; }
+}
+
+@media (max-width: 1122px){
+  .navbar-brand {
+      width: 300px;
+  }
 }
 
 hr {
@@ -608,7 +618,6 @@ hr {
     border-width: 5px;
     border-color: #BDBDBD;
     height: 100%;
-    min-height: 900px;
 }
 
 .zoom-col {
@@ -617,7 +626,8 @@ hr {
 
 canvas {
   background-color: black;
-  min-height: 800px;
+  height: 100%;
+
 }
 
 .left-col textarea {
@@ -685,4 +695,14 @@ canvas {
     width: 142px;
     height: 40px;
     margin: 0.5em 0 0;
+}
+
+.credit {
+  position: absolute;
+  bottom: 50px;
+  height:100px;
+  width: 90%;
+  z-index: 4;
+  color: #999;
+  font-style: italic;
 }

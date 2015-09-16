@@ -58,9 +58,8 @@ $collection = get_collection_for_item();
                         <a href="<?php echo url(array('action' => 'transcribe', 'item-id' => $file->item_id, 'file-id' => $file->id), 'scripto_action_item_file'); ?>">
                             <?php echo file_image('square_thumbnail', array(), $file); ?>
                         </a>
-                        <h4><?php echo $fileTitle; ?></h4>
+                        <h4><?php echo "image " . $file->order; ?></h4>
                         <span class="label <?php echo $label; ?>"><?php echo $status; ?></span>
-                        <span class="label <?php echo $label; ?>"><?php echo $file->order; ?></span>
                      </div>
                  </li>
             <?php endforeach; ?>

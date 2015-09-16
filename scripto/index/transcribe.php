@@ -175,17 +175,14 @@ jQuery(document).ready(function() {
 <?php endif; ?>
 <div id="transcription-col" class="left-col">
   <ul class="breadcrumb">
-      <li><a href="<?php echo WEB_ROOT; ?>"><span class="glyphicon glyphicon-home"/> Home</a></li>
 
-      <li><a href="<?php echo url('collections'); ?>"><?php echo $collection_link ?></a></li>
+      <li><a href="<?php echo url('collections'); ?>"><span class="glyphicon glyphicon-home"></span> <?php echo $collection_link ?></a></li>
 
       <li><a href="<?php echo url(array('controller' => 'items', 'action' => 'show', 'id' => $this->doc->getId()), 'id'); ?>"><?php echo $this->doc->getTitle(); ?></a></li>
 
   </ul>
   <div id="scripto-transcribe" class="scripto">
-
-      <h3><span class="fa fa-book fa-lg"></span> <?php if ($this->doc->getTitle()): ?><?php echo $this->doc->getTitle(); ?><?php else: ?><?php echo __('Untitled Document'); ?><?php endif; ?></h3>
-
+      <h3 style="display:none;"><span class="fa fa-book fa-lg"></span> <?php if ($this->doc->getTitle()): ?><?php echo $this->doc->getTitle(); ?><?php else: ?><?php echo __('Untitled Document'); ?><?php endif; ?></h3>
       <h4 style="margin:15px"><span class="fa fa-file-text fa-lg"></span> <?php echo $this->doc->getPageName(); ?><br/><small style="margin-left:2.5em">image <?php echo html_escape($this->paginationUrls['current_page_number']); ?> of <?php echo html_escape($this->paginationUrls['number_of_pages']); ?></small></h4>
 
       <!-- transcription -->
@@ -200,9 +197,10 @@ jQuery(document).ready(function() {
                   <?php echo $this->transcriptionPageHtml; ?>
               </div>
               <?php else: ?>
+                <!--alert
               <div class="alert alert-info">
                   <strong>This item is editable!</strong>
-              </div><!--alert alert-info-->
+              </div> alert-info-->
               <div><?php echo $this->formTextarea('scripto-transcription-page-wikitext', $this->doc->getTranscriptionPageWikitext(), array('cols' => '76', 'rows' => '16')); ?></div>
               <?php endif; ?>
               <p class="help-block">
@@ -214,7 +212,7 @@ jQuery(document).ready(function() {
 
           </div><!-- #scripto-transcription-edit -->
       <?php else: ?>
-          <p><?php echo __('You don\'t have permission to transcribe this page.'); ?></p>
+          <p><?php echo __('<a href="' . WEB_ROOT . '/scripto/login">Log in to Transcribe</a>'); ?></p>
 	  <?php if($this->doc->getTranscriptionStatus() == 'Not Started'): ?>
 	  <h3>Transcription Not Started</h3>
           <?php else: ?>
@@ -233,15 +231,18 @@ jQuery(document).ready(function() {
       <ul class="pagination">
       <li><?php if (isset($this->paginationUrls['previous'])): ?>
         <a class="btn btn-xs" href="<?php echo html_escape($this->paginationUrls['previous']); ?>">&#171; <?php echo __('previous page'); ?></a>
-        <?php else: ?>&#171; <?php echo __('previous page'); ?><?php endif; ?>
+      <?php else: ?><a class="btn btn-xs disabled"> &#171; <?php echo __('previous page'); ?></a><?php endif; ?>
         </li>
       <li><?php if (isset($this->paginationUrls['next'])): ?>
         <a class="btn btn-xs" href="<?php echo html_escape($this->paginationUrls['next']); ?>"><?php echo __('next page'); ?> &#187;</a>
-        <?php else: ?><?php echo __('next page'); ?> &#187;<?php endif; ?>
+      <?php else: ?><a class="btn btn-xs disabled"><?php echo __('next page'); ?> &#187; </a><?php endif; ?>
         </li>
       </ul>
 
   </div><!-- #scripto-transcribe -->
+
+  <div class="credit">For use by members of Fall 2015 Course - HIS 374: History of the American West</div>
+
 </div>
 <div id="zoom">
 </div>
