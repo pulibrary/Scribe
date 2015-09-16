@@ -212,7 +212,7 @@ jQuery(document).ready(function() {
 
           </div><!-- #scripto-transcription-edit -->
       <?php else: ?>
-          <p><?php echo __('<a href="' . WEB_ROOT . '/scripto/login">Log in to Transcribe</a>'); ?></p>
+          <p><?php echo __('<a class="btn btn-primary btn-lg" href="' . WEB_ROOT . '/scripto/login">Log in to Transcribe</a>'); ?></p>
 	  <?php if($this->doc->getTranscriptionStatus() == 'Not Started'): ?>
 	  <h3>Transcription Not Started</h3>
           <?php else: ?>
