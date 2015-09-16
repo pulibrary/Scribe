@@ -53,9 +53,13 @@ function sort_files($files) {
 
     foreach($files as $file) {
         $weight = metadata($file, array('Scripto', 'Weight'));
-        $file->order = $weight;
+        if(!is_null($weight)) {
+	  $file->order = $weight;
+        }
     }
-    usort($files, 'sort_by_order');
+    if (!is_null($files[0]->order)) { 
+      usort($files, 'sort_by_order');
+    }
     return $files;
 }
 
