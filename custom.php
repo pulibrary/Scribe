@@ -36,7 +36,8 @@ function return_files($files, array $props = array(), $wrapperAttributes = array
 {
     // require_once APP_DIR . '/helpers/Media.php';
     // $helper = new Omeka_View_Helper_Media;
-    return sort_files($files);
+    // return sort_files($files);
+    return $files;
 }
 
 // This function supplements FileFunctions.php in application/helpers

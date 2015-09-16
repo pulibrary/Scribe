@@ -51,7 +51,7 @@ $collection = get_collection_for_item();
                  } elseif (strlen($fileTitle) <= 36 ) {
                      $fileTitle .= '<br /><br />';
                  }
-                 $weight = metadata($file, array('Scripto', 'Weight'));
+                 //$weight = metadata($file, array('Scripto', 'Weight'));
              ?>
                 <li class="span2">
                     <div class="thumbnail">
@@ -60,7 +60,7 @@ $collection = get_collection_for_item();
                         </a>
                         <h4><?php echo $fileTitle; ?></h4>
                         <span class="label <?php echo $label; ?>"><?php echo $status; ?></span>
-                        <span class="label <?php echo $label; ?>"><?php echo $weight; ?></span>
+                        <span class="label <?php echo $label; ?>"><?php echo $file->order; ?></span>
                      </div>
                  </li>
             <?php endforeach; ?>
