@@ -160,10 +160,10 @@ jQuery(document).ready(function() {
     set_current_record('item',get_record_by_id('item', $page_id));
     $collection = get_collection_for_item();
     $collection_link = link_to_collection_for_item();
-    if(strpos($this->file['original_filename'],"/full/full/0/native.jpg")){
-      $iiif_id = str_replace("/full/full/0/native.jpg", "", $this->file['original_filename']);
+    if(strpos($this->file['original_filename'],"/full/full/0/default.jpg")){
+      $iiif_id = str_replace("/full/full/0/default.jpg", "", $this->file['original_filename']);
     }else{
-      $iiif_id = str_replace("/full/90,/0/native.jpg", "", $this->file['original_filename']);
+      $iiif_id = str_replace("/full/90,/0/default.jpg", "", $this->file['original_filename']);
     }
 
 ?>
@@ -290,19 +290,19 @@ jQuery(document).ready(function() {
 <script type="text/javascript">
     jQuery(document).ready(function() {
       jQuery.get( "<?php echo $iiif_id; ?>/info.json", function( data ) {
+
         var viewer = OpenSeadragon({
             id: "zoom",
             prefixUrl: "<?php echo WEB_ROOT; ?>/themes/Princeton/images/osd/",
             showNavigator:  false,
-            tileSources: [{"profile": "http://library.stanford.edu/iiif/image-api/1.1/compliance.html#level2", "scale_factors": data.scale_factors, "tile_height": data.tile_height, "height": data.height, "width": data.width, "tile_width": data.tile_width, "qualities": data.qualities, "formats": data.formats, "@context": "http://library.stanford.edu/iiif/image-api/1.1/context.json", "@id": "<?php echo $iiif_id; ?>"}]
+            tileSources: "<?php echo $iiif_id; ?>"
+            //for IIIF Image 1.1 API tileSources:  [{"profile": data.profile[0], "scale_factors": data.tiles[0].scale_factors, "height": data.height, "width": data.width, "tile_width": data.tiles[0].width, "tile_height": data.tiles[0].width, "qualities": data.profile[1].qualities, "formats": data.profile[1].formats, "@context": data['@context'], "@id": "<?php echo $iiif_id; ?>"}]
         });
+        
       });
 
     });
 
-
-    // <?php echo $iiif_id; ?>
-    // It would be nice to use <?php echo metadata($file, array('Dublin Core', 'Identifier')) ?> above instead of a string hack.  Also, it would be nice to hit the info.json for height and width data.
 </script>
 
 <?php echo foot(); ?>
