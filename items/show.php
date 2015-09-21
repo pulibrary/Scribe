@@ -55,8 +55,8 @@ $collection = get_collection_for_item();
              ?>
                 <li class="span2">
                     <div class="thumbnail">
-                        <a href="<?php echo url(array('action' => 'transcribe', 'item-id' => $file->item_id, 'file-id' => $file->id), 'scripto_action_item_file'); ?>">
-                            <?php echo file_image('square_thumbnail', array(), $file); ?>
+                        <a class="thumb" href="<?php echo url(array('action' => 'transcribe', 'item-id' => $file->item_id, 'file-id' => $file->id), 'scripto_action_item_file'); ?>">
+                            <img src="<?php echo str_replace("/full/full/0/default.jpg", "/full/200,/0/default.jpg", $file->original_filename); ?>" alt="image <?php echo $file->order; ?>" title="image <?php echo $file->order; ?>">
                         </a>
                         <h4><?php echo "image " . $file->order; ?></h4>
                         <span class="label <?php echo $label; ?>"><?php echo $status; ?></span>

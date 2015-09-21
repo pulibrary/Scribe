@@ -705,3 +705,13 @@ canvas {
   color: #999;
   font-style: italic;
 }
+
+.thumb {
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    display: block;
+}
+.thumb img {
+    width: 100%;
+}
