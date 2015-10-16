@@ -301,7 +301,7 @@ jQuery(document).ready(function() {
                   "width": data.width,
                   "profile": [ "http://iiif.io/api/image/2/level2.json" ],
                   "protocol": "http://iiif.io/api/image",
-                  "tiles": data.scale_factors
+                  "tiles": data.tiles
             }]
         });
       });
