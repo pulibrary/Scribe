@@ -290,19 +290,22 @@ jQuery(document).ready(function() {
 <script type="text/javascript">
     jQuery(document).ready(function() {
       jQuery.get( "<?php echo $iiif_id; ?>/info.json", function( data ) {
-
         var viewer = OpenSeadragon({
             id: "zoom",
             prefixUrl: "<?php echo WEB_ROOT; ?>/themes/Princeton/images/osd/",
             showNavigator:  false,
-            tileSources: "<?php echo $iiif_id; ?>"
-            //for IIIF Image 1.1 API tileSources:  [{"profile": data.profile[0], "scale_factors": data.tiles[0].scale_factors, "height": data.height, "width": data.width, "tile_width": data.tiles[0].width, "tile_height": data.tiles[0].width, "qualities": data.profile[1].qualities, "formats": data.profile[1].formats, "@context": data['@context'], "@id": "<?php echo $iiif_id; ?>"}]
+            tileSources: [{
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "<?php echo $iiif_id; ?>",
+                  "height": data.height,
+                  "width": data.width,
+                  "profile": [ "http://iiif.io/api/image/2/level2.json" ],
+                  "protocol": "http://iiif.io/api/image",
+                  "tiles": data.scale_factors
+            }]
         });
-        
       });
-
     });
-
 </script>
 
 <?php echo foot(); ?>
