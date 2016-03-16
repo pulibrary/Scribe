@@ -36,7 +36,8 @@ if ($collectionTitle == '') {
                             'class' => 'span2',
                         ))); ?>
                     <div class="caption">
-                        <?php echo link_to_item(metadata($item, array('Dublin Core', 'Title'), array('snippet' => 60)), array('class'=>'permalink')); ?><br /><br />
+                        <?php echo link_to_item(metadata($item, array('Dublin Core', 'Title'), array('snippet' => 60)), array('class'=>'permalink')); ?><br />
+                        <span class="small"><?php echo metadata($item, array('Dublin Core', 'Date')) ?></span><br />
                         <div id="col-progress">
                             <?php
                                 // Set statuses.

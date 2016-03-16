@@ -1,5 +1,5 @@
 <?php
-$titleArray = array(__('Scripto'), __('Login'));
+$titleArray = array(__('Transcriptions at Princeton University Library'), __('Login'));
 $title = implode(' | ', $titleArray);
 $head = array('title' => html_escape($title));
 echo head($head);
@@ -13,17 +13,20 @@ echo head($head);
     <div id="scripto-login" class="scripto">
         <!-- navigation -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="<?php echo html_escape(url('scripto/index/login')); ?>"><?php echo __('Log in to Scripto'); ?></a></li>
+            <li class="active"><a href="<?php echo html_escape(url('scripto/index/login')); ?>"><?php echo __('Log in'); ?></a></li>
 <!--
     mediawiki doesn't offer account creation through their API. You must link directly to the page in your installation
     /my_mediawiki_install_directory/index.php5?title=Special:UserLogin&type=signup
 -->
-            <li><a href="#" target="_blank"><?php echo __('Create an account'); ?></a></li>
+	    
+            <li><a href="http://diywiki.princeton.edu/index.php?title=Special:UserLogin&type=signup" target="_blank"><?php echo __('Create an account'); ?></a></li>
+       <!-- 
             <li><a href="<?php echo html_escape(url('scripto/recent-changes')); ?>"><?php echo __('Recent changes'); ?></a></li>
+        -->
+           <li><a href="http://diywiki.princeton.edu/index.php/Special:PasswordReset" target="_blank"><?php echo __('Reset Your Password'); ?></a></li>
         </ul>
         <p><?php echo __(
-            'Log in to Scripto using your MediaWiki username and password to access your account '
-          . 'and enable certain Scripto features. Login may not be required by the administrator.'
+            'Enrolled students in HIS 374: History of the American West Log in using username and password you created to access your account.'
         ); ?></p>
 
         <!-- login -->
@@ -41,7 +44,7 @@ echo head($head);
                 </div>
             </div>
             <?php echo $this->formHidden('scripto_redirect_url', $this->redirectUrl); ?>
-            <?php echo $this->formSubmit('scripto_mediawiki_login', __('Login'), array('style' => 'display:inline; float:none;')); ?>
+            <?php echo $this->formSubmit('scripto_mediawiki_login', __('Login'), array('class' => 'btn btn-primary', 'style' => 'display:inline; float:none;')); ?>
         </form>
     </div><!-- #scripto-login -->
 </div>
