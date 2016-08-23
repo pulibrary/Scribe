@@ -18,9 +18,10 @@ echo head($head);
     mediawiki doesn't offer account creation through their API. You must link directly to the page in your installation
     /my_mediawiki_install_directory/index.php5?title=Special:UserLogin&type=signup
 -->
+<!--
 	    
             <li><a href="http://diywiki.princeton.edu/index.php?title=Special:UserLogin&type=signup" target="_blank"><?php echo __('Create an account'); ?></a></li>
-       <!-- 
+       
             <li><a href="<?php echo html_escape(url('scripto/recent-changes')); ?>"><?php echo __('Recent changes'); ?></a></li>
         -->
            <li><a href="http://diywiki.princeton.edu/index.php/Special:PasswordReset" target="_blank"><?php echo __('Reset Your Password'); ?></a></li>
