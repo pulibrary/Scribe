@@ -49,9 +49,9 @@ if ($collectionTitle == '') {
                                 if ($progress_percent_completed == 100) {
                                     $status_message = __('Completed');
                                 } elseif ($progress_status == 100) {
-                                    $status_message = __('Needs Review');
+                                    $status_message = __('100% Transcribed');
                                 } elseif ($progress_status != 0 and $progress_status != 100) {
-                                    $status_message = __('%d%% Started', $progress_status);
+                                    $status_message = __('%d%% Transcribed', $progress_status);
                                 } else {
                                     $status_message = __('Not Started');
                                 }
@@ -60,7 +60,7 @@ if ($collectionTitle == '') {
                             ?>
                         <div class="progress">
                             <div title="<?php echo __('%d%% Completed', $progress_percent_completed); ?>" class="bar bar-danger" style="width:<?php echo $progress_percent_completed; ?>%;"></div>
-                            <div title="<?php echo __('%d%% Needs Review', $progress_needs_review); ?>" class="bar bar-warning" style="width:<?php echo $progress_needs_review; ?>%;"></div>
+                            <div title="<?php echo __('%d%% Transcribed', $progress_needs_review); ?>" class="bar bar-warning" style="width:<?php echo $progress_needs_review; ?>%;"></div>
                         </div>
                     </div>
                 </div>

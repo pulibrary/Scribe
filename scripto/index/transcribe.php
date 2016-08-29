@@ -241,7 +241,7 @@ jQuery(document).ready(function() {
 
   </div><!-- #scripto-transcribe -->
 
-  <div class="credit">For use by members of Fall 2015 Course - HIS 374: History of the American West</div>
+  <div class="credit">For use by members of Fall 2016 Course - HIS 374: History of the American West</div>
 
 </div>
 <div id="zoom">
