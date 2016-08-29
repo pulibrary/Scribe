@@ -294,6 +294,12 @@ jQuery(document).ready(function() {
             id: "zoom",
             prefixUrl: "<?php echo WEB_ROOT; ?>/themes/Princeton/images/osd/",
             showNavigator:  false,
+            // Show rotation buttons
+            showRotationControl: true,
+            // Enable touch rotation on tactile devices
+            gestureSettingsTouch: {
+                pinchRotate: true
+            },
             tileSources: [{
                   "@context": "http://iiif.io/api/image/2/context.json",
                   "@id": "<?php echo $iiif_id; ?>",
