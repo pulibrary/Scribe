@@ -52,11 +52,24 @@ $collection = get_collection_for_item();
                      $fileTitle .= '<br /><br />';
                  }
                  //$weight = metadata($file, array('Scripto', 'Weight'));
+
+                 // we need to url_encode the figgy id in case it was converted to slashes by the import
+                $from_figgy = strpos($file->original_filename, 'figgy_prod');
+                $filename_tmp = "";
+                if ($from_figgy !== false) {
+                    $filename_tmp = str_replace("https://iiif.princeton.edu/loris/figgy_prod/", "", $file->original_filename);
+                    $filename_tmp = str_replace("intermediate_file.jp2/full/1000,/0/default.jpg", "", $filename_tmp);
+                    $filename_tmp = urlencode($filename_tmp);
+                    $filename_tmp = "https://iiif.princeton.edu/loris/figgy_prod/" . $filename_tmp . "intermediate_file.jp2/full/200,/0/default.jpg";
+                } else {
+                    $filename_tmp = str_replace("/full/full/0/default.jpg", "/full/200,/0/default.jpg", $file->original_filename);
+                }
+
              ?>
                 <li class="span2">
                     <div class="thumbnail">
                         <a class="thumb" href="<?php echo url(array('action' => 'transcribe', 'item-id' => $file->item_id, 'file-id' => $file->id), 'scripto_action_item_file'); ?>">
-                            <img src="<?php echo str_replace("/full/full/0/default.jpg", "/full/200,/0/default.jpg", $file->original_filename); ?>" alt="image <?php echo $file->order; ?>" title="image <?php echo $file->order; ?>">
+                            <img src="<?php echo $filename_tmp; ?>" alt="image <?php echo $file->order; ?>" title="image <?php echo $file->order; ?>">
                         </a>
                         <h4><?php echo "image " . $file->order; ?></h4>
                         <span class="label <?php echo $label; ?>"><?php echo $status; ?></span>
